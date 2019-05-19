@@ -1,33 +1,21 @@
 import { Component, OnInit } from '@angular/core';
-import { Contact } from './models/contact';
-import { ContactService } from './services/contact.service';
+import { ContactService } from '../services/contact.service';
+import { Contact } from '../models/contact';
 
 @Component({
-  selector: 'app-root',
-  templateUrl: './app.component.html',
-  styleUrls: ['./app.component.css']
+  selector: 'app-contacts-table',
+  templateUrl: './contacts-table.component.html',
+  styleUrls: ['./contacts-table.component.css']
 })
-export class AppComponent implements OnInit {
+export class ContactsTableComponent implements OnInit {
 
   contacts: Contact[];
-  newContact: Contact = <Contact>{};
 
   constructor(private contactService: ContactService) {}
 
   ngOnInit() {
     this.contactService.getContacts()
       .subscribe((res: Contact[]) => this.contacts = res);
-  }
-
-  submitNewContact() {
-
-    this.contactService.postContact(this.newContact)
-      .subscribe((res: Contact) => {
-        this.newContact._id = res._id;
-
-        this.contacts.unshift(this.newContact);
-        this.newContact = <Contact>{};
-      });
   }
 
   delete(contact: Contact) {

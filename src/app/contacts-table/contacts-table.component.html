@@ -1,0 +1,27 @@
+<table class="table table-bordered table-hover table-striped">
+  <thead class="thead-dark">
+    <tr>
+      <th class="col-5">Name</th>
+      <th class="col-5">Email</th>
+      <th class="col-2">Actions</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr *ngFor="let contact of contacts">
+      <td>{{ contact.name }}</td>
+      <td>{{ contact.email }}</td>
+      <td>
+        <button 
+          (click)="delete(contact)"
+          class="btn btn-sm btn-danger mr-2">
+          Remover
+        </button>
+        <button 
+          (click)="update(contact)"
+          class="btn btn-sm btn-info">
+          Update
+        </button>
+      </td>
+    </tr>
+  </tbody>
+</table>
